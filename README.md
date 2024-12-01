@@ -1,3 +1,15 @@
+## install package in development model
+
+```{python}
+python3 -m pip install -e .
+```
+
+or
+
+```{python}
+python3 -m pip install --editable .
+```
+
 ## What is MHCSeqNet?
 
 MHCSeqNet is a MHC ligand prediction python package developed by the [Computational Molecular Biology Group](http://cmb.md.chula.ac.th/) at Chulalongkorn University, Bangkok, Thailand. MHCSeqNet utilizes recurrent neural networks to process input ligand's and MHC allele's amino acid sequences and therefore can be to extended to handle peptide of any length and any MHC allele with known amino acid sequence. 

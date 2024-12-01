@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# pip install --editable .
+
+[project]
+name = "MHCSeqNet"
+version = "1.1"
+authors = [
+    { name="Natapol Pornputtapong", email="natapol.p@pharm.chula.ac.th" },
+]
+description = "MHC ligand prediction tool"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Development Status :: 2 - Pre-Alpha",
+]
+
+dependencies = [
+    # "numpy",
+    # "scipy>=1.13.0",
+    # "biopython>=1.84",
+    # "pandas>=2.2",
+    # "tqdm"
+    # numpy (>= 1.14.3)
+    # Keras (>= 2.2.0)
+    # tensorflow (>= 1.6.0)
+    # scipy (>= 1.1.0)
+    # scikit-learn (>= 0.19.1)
+]
+
+# entry_points={
+#         'console_scripts': ['kitsune=kitsune.kitsune:main'],
+#     },
+
+[project.scripts]
+kali = "pykali.kali:main"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+
+[project.urls]
+Homepage = "https://github.com/s3bio/MHCSeqNet/"
+Issues = "https://github.com/s3bio/MHCSeqNet/issues"
