@@ -1,42 +1,47 @@
-## install package in development model
+# MHCSeqNet
 
-```{python}
-python3 -m pip install -e .
-```
-
-or
-
-```{python}
-python3 -m pip install --editable .
-```
+[![PyPI version](https://badge.fury.io/py/kitsune.svg)](https://badge.fury.io/py/kitsune)
+[![Please Cite](https://zenodo.org/badge/doi/10.3389/fbioe.2020.556413.svg)](https://doi.org/10.3389/fbioe.2020.556413
+)
+[![Source code](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/natapol/kitsune)
 
 ## What is MHCSeqNet?
 
-MHCSeqNet is a MHC ligand prediction python package developed by the [Computational Molecular Biology Group](http://cmb.md.chula.ac.th/) at Chulalongkorn University, Bangkok, Thailand. MHCSeqNet utilizes recurrent neural networks to process input ligand's and MHC allele's amino acid sequences and therefore can be to extended to handle peptide of any length and any MHC allele with known amino acid sequence. 
+MHCSeqNet is a MHC ligand prediction python package developed by the [Computational Molecular Biology Group](http://cmb.md.chula.ac.th/) and [S3Bio Lab](http://s3bio.gitlab.io/) at Chulalongkorn University, Bangkok, Thailand. MHCSeqNet utilizes recurrent neural networks to process input ligand's and MHC allele's amino acid sequences and therefore can be to extended to handle peptide of any length and any MHC allele with known amino acid sequence. 
 
-The current release was trained using only data from MHC class I and supports peptides ranging from 8 to 15 amino acids in length, but the model can be re-trained to support more alleles and wider ranges of peptide length. 
+## version history
 
-Please see our [preprint on bioRxiv](https://www.biorxiv.org/content/early/2018/11/08/371591) for more information.
+1.0: The model was trained using only data from MHC class I and supports peptides ranging from 8 to 15 amino acids in length, but the model can be re-trained to support more alleles and wider ranges of peptide length.
+
+1.1.0: The package was update to the latest version of Tensorflow and only support for onehot model prediction
+
+Please see our [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2892-4) for more information.
 
 ### Models
+
 MHCSeqNet offers two versions of prediction models
+
 1. One-hot model: This model uses data from each MHC allele to train a separate predictor for that allele. The list of supported MHC alleles for the current release can be found [here](https://github.com/cmbcu/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Pretrained%20Models/one_hot_model/supported_alleles.txt) 
 
-2. Sequence-based model: This model use data from all MHC alleles to train a single predictor that can handle any MHC allele whose amino acid sequence is known. For more information on how our model learns MHC allele information in the form of amino acid sequence, please see our [preprint on bioRxiv](https://www.biorxiv.org/content/early/2018/11/08/371591). The list of MHC alleles used to train this model can be found [here](https://github.com/cmbcu/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Pretrained%20Models/sequence_model/supported_alleles.txt)
+2. Sequence-based model: This model use data from all MHC alleles to train a single predictor that can handle any MHC allele whose amino acid sequence is known. For more information on how our model learns MHC allele information in the form of amino acid sequence, please see our [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2892-4). The list of MHC alleles used to train this model can be found [here](https://github.com/s3bio/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Pretrained%20Models/sequence/supported_alleles.txt)
 
 ## How to install?
-MHCSeqNet requires Python 3 (>= 3.4) and the following Python packages:
+MHCSeqNet requires Python 3 (>= 3.8) and the following Python packages:
+
 ```
-numpy (>= 1.14.3)
-Keras (>= 2.2.0)
-tensorflow (>= 1.6.0)
-scipy (>= 1.1.0)
-scikit-learn (>= 0.19.1)
+numpy
+tensorflow (>= 2.10.0)
 ```
 If your system has both Python 2 and Python 3, please make sure that Python 3 is being used when following these instructions.
 Note that we cannot guarantee whether MHCSeqNet will work with older versions of these packages.
 
-To install MHCSeqNet:
+### install packages
+
+```{bash}
+python -m pip install MHCSeqNet
+```
+
+### install MHCSeqNet from source:
 1. Clone this repository
 ```
 git clone https://github.com/cmbcu/MHCSeqNet
