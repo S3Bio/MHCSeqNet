@@ -1,7 +1,7 @@
 # MHCSeqNet
 
-[![PyPI version](https://badge.fury.io/py/kitsune.svg)](https://badge.fury.io/py/kitsune)
-[![Please Cite](https://zenodo.org/badge/doi/10.3389/fbioe.2020.556413.svg)](https://doi.org/10.3389/fbioe.2020.556413
+[![PyPI version](https://badge.fury.io/py/MHCSeqNet.svg)](https://badge.fury.io/py/MHCSeqNet)
+[![Please Cite](https://zenodo.org/badge/doi/10.1186/s12859-019-2892-4.svg)](https://doi.org/10.1186/s12859-019-2892-4
 )
 [![Source code](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/natapol/kitsune)
 
@@ -21,9 +21,9 @@ Please see our [Publication](https://bmcbioinformatics.biomedcentral.com/article
 
 MHCSeqNet offers two versions of prediction models
 
-1. One-hot model: This model uses data from each MHC allele to train a separate predictor for that allele. The list of supported MHC alleles for the current release can be found [here](https://github.com/cmbcu/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Pretrained%20Models/one_hot_model/supported_alleles.txt) 
+1. One-hot model: This model uses data from each MHC allele to train a separate predictor for that allele. The list of supported MHC alleles for the current release can be found [here]() 
 
-2. Sequence-based model: This model use data from all MHC alleles to train a single predictor that can handle any MHC allele whose amino acid sequence is known. For more information on how our model learns MHC allele information in the form of amino acid sequence, please see our [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2892-4). The list of MHC alleles used to train this model can be found [here](https://github.com/s3bio/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Pretrained%20Models/sequence/supported_alleles.txt)
+2. Sequence-based model: This model use data from all MHC alleles to train a single predictor that can handle any MHC allele whose amino acid sequence is known. For more information on how our model learns MHC allele information in the form of amino acid sequence, please see our [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2892-4). The list of MHC alleles used to train this model can be found [here]()
 
 ## How to install?
 MHCSeqNet requires Python 3 (>= 3.8) and the following Python packages:
@@ -41,7 +41,8 @@ Note that we cannot guarantee whether MHCSeqNet will work with older versions of
 python -m pip install MHCSeqNet
 ```
 
-### install MHCSeqNet from source:
+### install MHCSeqNet from source
+
 1. Clone this repository
 ```
 git clone https://github.com/cmbcu/MHCSeqNet
@@ -62,62 +63,40 @@ python Setup.py install
 ```
 
 ## How to use MHCSeqNet?
-MHCSeqNet can be launched through the MHCSeqNet.py script or by editing sample scripts explained below
 
-### MHCSeqNet.py
-The instruction on how to use the MHCSeqNet.py script can be found by running:
-```
-python MHCSeqNet.py -h
+MHCSeqNet can be launched through the MHCSeqNet script or by editing sample scripts explained below
 
-usage: python MHCSeqNet.py [options] peptide_file allele_file output_file
-         'peptide_file' and 'allele_file' should each contains only one column, without header row
-  options:
-    -p, --path                             REQUIRED: Speficy the path to pre-trained model directory
-                                           This should be either the 'one_hot_model' or the 'sequence_model'
-                                            directory located in 'PATH/PretrainedModels/' where PATH is where
-                                            MHCSeqNet was downloaded to
-    -m, --model        [onehot sequence]   REQUIRED: Specify whether the one-hot model or sequence-based model will be used
-    -i, --input-mode   [paired complete]   REQUIRED: Specify whether the prediction should be made for each pair of peptide
-                                            and allele on the same row of each input file [paired] or for all
-                                            combinations of peptides and alleles [complete]
-    -h, --help                             Print this message
-```
-Sample peptide and MHC allele files can be found in the 'Sample' directory
+```{bash}
+$ MHCSeqNet -h
 
-### Sample scripts
-Sample scripts for running MHCSeqNet in either the 'one-hot' mode or 'sequence-based' can be found in the 'Sample' directory.
-Continuing from the installation process, you may test the installation of MHCSeqNet through the following commands:
-```
-python Sample/OnehotModelPredictionExample.py
-python Sample/SequenceModelPredictionExample.py
+usage: MHCSeqNet [-h] [-p PATH] [-m {onehot,sequence}] [-i {paired,complete}] peptide_file allele_file output_file
+
+positional arguments:
+  peptide_file          should each contains only one column, without header row
+  allele_file           should each contains only one column, without header row
+  output_file
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PATH, --path PATH  Specify the path to pre-trained model directory. This should be either the 'one_hot_model' or the 'sequence_model' directory located in 'PATH/PretrainedModels/' where PATH is where
+                        MHCSeqNet was downloaded to
+  -m {onehot,sequence}, --model {onehot,sequence}
+                        Specify whether the one-hot model or sequence-based model will be used
+  -i {paired,complete}, --input-mode {paired,complete}
+                        Specify whether the prediction should be made for each pair of peptide and allele on the same row of each input file [paired] or for all combinations of peptides and alleles
+                        [complete] Print this message
+
 ```
 
-To run the sample scripts from different locations on your system, please edit the path to pretrained model in the respective script.
-```
-bindingOnehotPredictor.load_model('./PretrainedModels/one_hot_model/')
-bindingSequencePredictor.load_model('./PretrainedModels/sequence_model/')
-```
+Sample peptide and MHC allele files can be found in the 'Samples' directory
 
-To replace sample peptides and MHC alleles with your own lists, please edit the 'sample_data' accordingly.
-```
-sample_data = np.array([['TYIGSLPGK', 'HLA-B*58:01'],
-                        ['TYIHALDNGLF', 'HLA-A*24:02'],
-                        ['AAAWICGEF', 'HLA-B*15:01'],
-                        ['TWLTYHGAI', 'HLA-A*30:02'],
-                        ['TWLVNSAAHLF', 'HLA-A*24:02']])
-```
-
-To adjust the behavior of how prediction results are output (e.g. print results to file rather than on the screen), please edit the following line:
-```
-print(result)
-```
 
 ### Input format
 Peptide: The current release supports peptides of length 8 - 15 and does not accept ambiguous amino acids.
 
-MHC allele: For alleles included in the training set (i.e. supported alleles listed in the [models](https://github.com/cmbcu/MHCSeqNet#models) section), the model requires the 'HLA-A\*XX:YY' format. 
+MHC allele: For alleles included in the training set (i.e. supported alleles listed in the [models]() section), the model requires the 'HLA-A\*XX:YY' format. 
 
-To add new MHC alleles to the sequence-based model, the names and amino acid sequences of the new alleles must first be added to the [AlleleInformation.txt and supported_alleles.txt](https://github.com/cmbcu/MHCSeqNet/tree/master/MHCSeqNet/PredictionModel/Pretrained%20Models/sequence_model) in the sequence-based model's directory.
+To add new MHC alleles to the sequence-based model, the names and amino acid sequences of the new alleles must first be added to the [AlleleInformation.txt and supported_alleles.txt]() in the sequence-based model's directory.
 
 ### Output
 MHCSeqNet output binding probability ranging from 0.0 to 1.0 where 0.0 indicates an unlikely ligand and 1.0 indicates a likely ligand.
