@@ -11,7 +11,7 @@ authors = [
     { name="Natapol Pornputtapong", email="natapol.p@pharm.chula.ac.th" },
 ]
 description = "MHC ligand prediction tool"
-readme = "README.md"
+readme = "../README.md"
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
