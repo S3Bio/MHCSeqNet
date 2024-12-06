@@ -21,9 +21,9 @@ Please see our [Publication](https://bmcbioinformatics.biomedcentral.com/article
 
 MHCSeqNet offers two versions of prediction models
 
-1. One-hot model: This model uses data from each MHC allele to train a separate predictor for that allele. The list of supported MHC alleles for the current release can be found [here]() 
+1. One-hot model: This model uses data from each MHC allele to train a separate predictor for that allele. The list of supported MHC alleles for the current release can be found [here](https://github.com/S3Bio/MHCSeqNet/blob/update/src/MHCSeqNet/PretrainedModels/onehot/supported_alleles.txt) 
 
-2. Sequence-based model: This model use data from all MHC alleles to train a single predictor that can handle any MHC allele whose amino acid sequence is known. For more information on how our model learns MHC allele information in the form of amino acid sequence, please see our [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2892-4). The list of MHC alleles used to train this model can be found [here]()
+2. Sequence-based model: This model use data from all MHC alleles to train a single predictor that can handle any MHC allele whose amino acid sequence is known. For more information on how our model learns MHC allele information in the form of amino acid sequence, please see our [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2892-4). The list of MHC alleles used to train this model can be found [here](https://github.com/S3Bio/MHCSeqNet/blob/update/src/MHCSeqNet/PretrainedModels/sequence/supported_alleles.txt)
 
 ## How to install?
 MHCSeqNet requires Python 3 (>= 3.8) and the following Python packages:
@@ -32,8 +32,8 @@ MHCSeqNet requires Python 3 (>= 3.8) and the following Python packages:
 numpy
 tensorflow (>= 2.10.0)
 ```
-If your system has both Python 2 and Python 3, please make sure that Python 3 is being used when following these instructions.
-Note that we cannot guarantee whether MHCSeqNet will work with older versions of these packages.
+If your system has both Python 2 and Python 3, please ensure that Python 3 is used when following these instructions.
+So that you know, we cannot promise whether MHCSeqNet will work with older versions of these packages.
 
 ### install packages
 
@@ -41,11 +41,11 @@ Note that we cannot guarantee whether MHCSeqNet will work with older versions of
 python -m pip install MHCSeqNet
 ```
 
-### install MHCSeqNet from source
+### Install MHCSeqNet from the source
 
 1. Clone this repository
 ```
-git clone https://github.com/cmbcu/MHCSeqNet
+git clone https://github.com/s3bio/MHCSeqNet
 ```
 Or you may find other methods for cloning a GitHub repository [here](https://help.github.com/articles/cloning-a-repository/)
 
@@ -56,7 +56,7 @@ pip install setuptools
 ```
 If you have trouble with this step, more information can be found [here](https://packaging.python.org/tutorials/installing-packages/#install-pip-setuptools-and-wheel)
 
-3. Run Setup.py inside MHCSeqNet directory to install MHCSeqNet.
+3. Run Setup.py inside the MHCSeqNet directory to install MHCSeqNet.
 ```
 cd MHCSeqNet
 python Setup.py install
@@ -96,7 +96,8 @@ Peptide: The current release supports peptides of length 8 - 15 and does not acc
 
 MHC allele: For alleles included in the training set (i.e. supported alleles listed in the [models]() section), the model requires the 'HLA-A\*XX:YY' format. 
 
-To add new MHC alleles to the sequence-based model, the names and amino acid sequences of the new alleles must first be added to the [AlleleInformation.txt and supported_alleles.txt]() in the sequence-based model's directory.
+To add new MHC alleles to the sequence-based model, the names and amino acid sequences of the new alleles must first be added to the [AlleleInformation.txt](https://github.com/S3Bio/MHCSeqNet/blob/update/src/MHCSeqNet/PretrainedModels/sequence/AlleleInformation.txt) and [supported_alleles.txt](https://github.com/S3Bio/MHCSeqNet/blob/update/src/MHCSeqNet/PretrainedModels/sequence/supported_alleles.txt
+) in the sequence-based model's directory.
 
 ### Output
 MHCSeqNet output binding probability ranging from 0.0 to 1.0 where 0.0 indicates an unlikely ligand and 1.0 indicates a likely ligand.
