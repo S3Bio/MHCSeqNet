@@ -24,7 +24,11 @@ def main():
                             "where MHCSeqNet was downloaded to")
     )
 
-    parser.add_argument("-m", "--model", default="onehot", choices=['onehot', 'sequence'],
+    parser.add_argument("-m", "--model", default="onehot", choices=['onehot'],
+                        help="Specify whether the one-hot model or sequence-based model will be used" 
+    )
+
+    parser.add_argument("-t", "--file-type", default="h5", choices=['h5', 'keras'],
                         help="Specify whether the one-hot model or sequence-based model will be used" 
     )
 
@@ -62,7 +66,7 @@ def main():
     else:
         path = Path(__file__).resolve().parent / "PretrainedModels" / args.model
     
-    localPredictor.load(path)
+    localPredictor.load(path, file_type=args.file_type)
 
     peptides = []
     with open(args.peptide_file, 'rt') as fin:
@@ -95,7 +99,7 @@ def main():
 
     ### output results
     with open(args.output_file, 'w') as fout:
-        for i in range(len(result)):
+        for i in range(len(input_data)):
             fout.write('\t'.join([input_data[i, 0], input_data[i, 1], str(result[i][0])]) + '\n')
 
     print('Done! Wrote output to ' + args.output_file)
